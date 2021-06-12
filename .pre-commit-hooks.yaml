@@ -1,0 +1,8 @@
+-   id: matlab-reflow-comments
+    name: MATLAB Reflow Comments
+    description: Reflow MATLAB comment line(s) to the specified line length
+    entry: matlab-reflow-comments
+    language: python
+    types: [text]
+    files: '\.m$'
+    args: [--line-length=76]

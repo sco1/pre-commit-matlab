@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "pre-commit-matlab"
+version = "0.1.0"
+description = "A Collection of pre-commit hooks for MATLAB"
+authors = ["sco1 <sco1.git@gmail.com>"]
+
+readme = "README.md"
+homepage = "https://github.com/sco1/"
+repository = "https://github.com/sco1/pre-commit-matlab"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+    "Typing :: Typed",
+]
+packages = [{include = "pre_commit_matlab"},]
+
+[tool.poetry.scripts]
+matlab-reflow-comments = "pre_commit_matlab.matlab_reflow_comments:main"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+bump2version = "^1.0"
+flake8 = "^3.8"
+flake8-annotations = "^2.6"
+flake8-bugbear = "^21.4"
+flake8-docstrings = "^1.5"
+flake8-fixme = "^1.1"
+flake8-import-order = "^0.18"
+flake8-tidy-imports = "^4.1"
+mypy = "^0.902"
+pep8-naming = "^0.11"
+pre-commit = "^2.7"
+pytest = "^6.0"
+pytest-check = "^1.0"
+pytest-cov = "^2.10"
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
