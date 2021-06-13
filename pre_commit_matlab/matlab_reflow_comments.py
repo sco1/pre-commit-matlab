@@ -70,9 +70,13 @@ def process_file(file: Path, line_length: int, ignore_indented: bool) -> None:
 
             # Write our non-commment line
             f.write(f"{line}\n")
+        else:
+            # Dump any remaining comments in the buffer (file ends in comments)
+            if buffer:
+                buffer = _dump_buffer(f, buffer, line_length, indent_level)
 
 
-def main(argv: t.Optional[t.Sequence[str]] = None) -> None:
+def main(argv: t.Optional[t.Sequence[str]] = None) -> None:  # pragma: no cover
     """"""
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="*", type=Path, help="Filenames to check.")
@@ -84,5 +88,5 @@ def main(argv: t.Optional[t.Sequence[str]] = None) -> None:
         process_file(file, args.line_length, args.ignore_indented)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()
