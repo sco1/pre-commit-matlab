@@ -32,7 +32,10 @@ is passed back into the reformatted source code as-is. Leading whitespace in the
 considered.
 
 For example:
-    * `%  This is indented`
-    * `%    This is indented`
-    * `% This is not indented`
-    * `    % This is not indented`
+  ```matlab
+  %  This is indented
+  %    This is indented
+
+  % This is not indented
+      % This is not indented
+  ```
