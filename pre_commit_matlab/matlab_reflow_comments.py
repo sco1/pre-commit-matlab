@@ -28,8 +28,37 @@ def _dump_buffer(f: t.TextIO, buffer: deque, line_length: int, indent_level: int
     return buffer
 
 
+def _write_line(
+    f: t.TextIO, line: str, buffer: deque, line_length: int, indent_level: int
+) -> deque:
+    """
+    Write the provided source line after checking for buffered comments to empty.
+
+    The buffer is cleared & returned after the new line(s) are written.
+    """
+    if buffer:
+        buffer = _dump_buffer(f, buffer, line_length, indent_level)
+    f.write(f"{line}\n")
+
+    return buffer
+
+
 def process_file(file: Path, line_length: int, ignore_indented: bool) -> None:
-    """"""
+    """
+    Reflow comments (`%`) in the provided MATLAB file (`*.m`) to the specified line length.
+
+    Blank comment lines are passed back into the reformatted source code.
+
+    If `ignore_indented` is `True`, comments that contain inner indentation of at least two spaces
+    is passed back into the reformatted source code as-is. Leading whitespace in the line is not
+    considered.
+
+    For example:
+        * `%  This is indented`
+        * `%    This is indented`
+        * `% This is not indented`
+        * `    % This is not indented`
+    """
     src = file.read_text().splitlines()
     with file.open("w") as f:
         buffer: deque = deque()
@@ -48,38 +77,28 @@ def process_file(file: Path, line_length: int, ignore_indented: bool) -> None:
                 inner_indent = _n_leading_spaces(uncommented_line)
 
                 if inner_indent == 0:
-                    # Blank line, check buffer then dump
-                    if buffer:
-                        buffer = _dump_buffer(f, buffer, line_length, indent_level)
-                    f.write(f"{line}\n")
+                    # Blank line, write straight out
+                    buffer = _write_line(f, line, buffer, line_length, indent_level)
                     continue
 
                 if ignore_indented and inner_indent >= 2:
-                    # Dump the buffer, then write the current line
-                    if buffer:
-                        buffer = _dump_buffer(f, buffer, line_length, indent_level)
-                    f.write(f"{line}\n")
+                    # Inner indented comment, write straight out
+                    buffer = _write_line(f, line, buffer, line_length, indent_level)
                     continue
 
                 buffer.append(uncommented_line)
                 continue
 
-            # If there are buffered comments to reflow then dump
-            if buffer:
-                buffer = _dump_buffer(f, buffer, line_length, indent_level)
-
-            # Write our non-commment line
-            f.write(f"{line}\n")
+            buffer = _write_line(f, line, buffer, line_length, indent_level)
         else:
             # Dump any remaining comments in the buffer (file ends in comments)
             if buffer:
                 buffer = _dump_buffer(f, buffer, line_length, indent_level)
 
 
-def main(argv: t.Optional[t.Sequence[str]] = None) -> None:  # pragma: no cover
-    """"""
+def main(argv: t.Optional[t.Sequence[str]] = None) -> None:  # pragma: no cover  # noqa: D103
     parser = argparse.ArgumentParser()
-    parser.add_argument("filenames", nargs="*", type=Path, help="Filenames to check.")
+    parser.add_argument("filenames", nargs="*", type=Path)
     parser.add_argument("--line-length", type=int, default=78)
     parser.add_argument("--ignore-indented", type=bool, default=True)
     args = parser.parse_args(argv)
