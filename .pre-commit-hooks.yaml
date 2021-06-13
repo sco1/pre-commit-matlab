@@ -5,4 +5,4 @@
     language: python
     types: [text]
     files: '\.m$'
-    args: [--line-length=76]
+    args: [--line-length=75, --ignore-indented=True]
