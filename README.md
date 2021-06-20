@@ -5,7 +5,7 @@
 # pre-commit-matlab
 A collection of [pre-commit](https://pre-commit.com/) hooks for MATLAB
 
-Ok... it's just one hook so far but maybe someday there will be more 😃!
+Ok... it's just one hook so far but maybe someday there will be more 😃
 
 ## Using pre-commit-matlab with pre-commit
 Add this to your `.pre-commit-config.yaml`
@@ -19,7 +19,7 @@ Add this to your `.pre-commit-config.yaml`
 ```
 
 ## Hooks
-### `pre-commit-matlab`
+### `matlab-reflow-comments`
 Reflow comments (lines beginning with `%`) in MATLAB file(s) (`*.m`) to the specified line length.
 
 Blank comment lines are passed back into the reformatted source code.
@@ -33,9 +33,8 @@ considered.
 
 For example:
   ```matlab
+  % This is not indented
+  % This is not indented
   %  This is indented
   %    This is indented
-
-  % This is not indented
-      % This is not indented
   ```
