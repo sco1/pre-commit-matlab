@@ -33,7 +33,7 @@ considered.
 
 For example:
   ```matlab
-  % This is not indented
+      % This is not indented
   % This is not indented
   %  This is indented
   %    This is indented
