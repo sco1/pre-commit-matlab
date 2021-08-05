@@ -1,4 +1,6 @@
-[![GitHub release](https://img.shields.io/github/release/sco1/pre-commit-matlab.svg)](https://github.com/sco1/pre-commit-matlab/releases/latest)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pre-commit-matlab)](https://pypi.org/project/pre-commit-matlab/)
+[![PyPI](https://img.shields.io/pypi/v/pre-commit-matlab)](https://pypi.org/project/pre-commit-matlab/)
+[![PyPI - License](https://img.shields.io/pypi/l/pre-commit-matlab?color=magenta)](https://github.com/sco1/pre-commit-matlab/blob/master/LICENSE)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/sco1/pre-commit-matlab/main.svg)](https://results.pre-commit.ci/latest/github/sco1/pre-commit-matlab/main)
 [![lint-and-test](https://github.com/sco1/pre-commit-matlab/actions/workflows/lint_test.yml/badge.svg?branch=main)](https://github.com/sco1/pre-commit-matlab/actions/workflows/lint_test.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
