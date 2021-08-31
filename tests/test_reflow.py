@@ -206,6 +206,27 @@ FORMATTING_TEST_CASES = [
             """
         ),
     ),
+    (
+        "hyphens",
+        dedent(
+            """\
+            % This is a really long comment line with some stuff and also a hyphenated word that hits the-boundary
+            """
+        ),
+        dedent(
+            """\
+            % This is a really long comment line with some stuff and also a hyphenated word that hits
+            % the-boundary
+            """
+        ),
+        dedent(
+            """\
+            % This is a really long comment line with some
+            % stuff and also a hyphenated word that hits
+            % the-boundary
+            """
+        ),
+    ),
 ]
 
 

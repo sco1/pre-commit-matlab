@@ -20,6 +20,7 @@ def _dump_buffer(f: t.TextIO, buffer: deque, line_length: int, indent_level: int
         width=line_length,
         initial_indent=f"{' '*indent_level}%",  # Don't include the initial leading space
         subsequent_indent=f"{' '*indent_level}% ",
+        break_on_hyphens=False,
     )
     reflowed_src = f"{reflowed_src}\n"
     f.write(reflowed_src)
