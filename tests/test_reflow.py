@@ -206,6 +206,45 @@ FORMATTING_TEST_CASES = [
             """
         ),
     ),
+    (
+        "hyphens",
+        dedent(
+            """\
+            % This is a really long comment line with some stuff and also a hyphenated word that hits the-boundary
+            """
+        ),
+        dedent(
+            """\
+            % This is a really long comment line with some stuff and also a hyphenated word that hits
+            % the-boundary
+            """
+        ),
+        dedent(
+            """\
+            % This is a really long comment line with some
+            % stuff and also a hyphenated word that hits
+            % the-boundary
+            """
+        ),
+    ),
+    (
+        "Inline percent signs",
+        dedent(
+            """\
+            % This is 100% a comment with a percent sign
+            """
+        ),
+        dedent(
+            """\
+            % This is 100% a comment with a percent sign
+            """
+        ),
+        dedent(
+            """\
+            % This is 100% a comment with a percent sign
+            """
+        ),
+    ),
 ]
 
 
