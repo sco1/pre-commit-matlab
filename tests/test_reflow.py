@@ -227,6 +227,24 @@ FORMATTING_TEST_CASES = [
             """
         ),
     ),
+    (
+        "Inline percent signs",
+        dedent(
+            """\
+            % This is 100% a comment with a percent sign
+            """
+        ),
+        dedent(
+            """\
+            % This is 100% a comment with a percent sign
+            """
+        ),
+        dedent(
+            """\
+            % This is 100% a comment with a percent sign
+            """
+        ),
+    ),
 ]
 
 

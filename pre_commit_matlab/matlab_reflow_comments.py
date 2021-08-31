@@ -74,7 +74,8 @@ def process_file(file: Path, line_length: int, ignore_indented: bool) -> None:
 
                 # Count the inner level of indentation of the comment itself to use for both the
                 # empty comment line check and the ignore indent check
-                uncommented_line = lstripped_line.replace("%", "").rstrip()
+                # Only strip leading percent sign so inline percentages aren't mangled
+                uncommented_line = lstripped_line.replace("%", "", 1).rstrip()
                 inner_indent = _n_leading_spaces(uncommented_line)
 
                 if inner_indent == 0:
