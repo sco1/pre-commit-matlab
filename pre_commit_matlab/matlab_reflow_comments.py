@@ -44,7 +44,9 @@ def _write_line(
     return buffer
 
 
-def process_file(file: Path, line_length: int, ignore_indented: bool) -> None:
+def process_file(
+    file: Path, line_length: int, ignore_indented: bool, alternate_capital_handling: bool
+) -> None:
     """
     Reflow comments (`%`) in the provided MATLAB file (`*.m`) to the specified line length.
 
@@ -59,6 +61,13 @@ def process_file(file: Path, line_length: int, ignore_indented: bool) -> None:
         * `%    This is indented`
         * `% This is not indented`
         * `    % This is not indented`
+
+    If `alternate_capital_handling` is `True`, if the line buffer has contents then a line beginning
+    with a capital letter is treated as a new comment block.
+
+    For example:
+        % This is a comment line
+        % This is a second comment line that will not be reflowed into the previous line
     """
     src = file.read_text().splitlines()
     with file.open("w") as f:
@@ -88,6 +97,12 @@ def process_file(file: Path, line_length: int, ignore_indented: bool) -> None:
                     buffer = _write_line(f, line, buffer, line_length, indent_level)
                     continue
 
+                if all(
+                    (alternate_capital_handling, lstripped_line == lstripped_line.upper(), buffer)
+                ):
+                    buffer = _write_line(f, line, buffer, line_length, indent_level)
+                    continue
+
                 buffer.append(uncommented_line)
                 continue
 
@@ -103,10 +118,11 @@ def main(argv: t.Optional[t.Sequence[str]] = None) -> None:  # pragma: no cover 
     parser.add_argument("filenames", nargs="*", type=Path)
     parser.add_argument("--line-length", type=int, default=78)
     parser.add_argument("--ignore-indented", type=bool, default=True)
+    parser.add_argument("--alternate-capital-handling", type=bool, default=False)
     args = parser.parse_args(argv)
 
     for file in args.filenames:
-        process_file(file, args.line_length, args.ignore_indented)
+        process_file(file, args.line_length, args.ignore_indented, args.alternate_capital_handling)
 
 
 if __name__ == "__main__":  # pragma: no cover
