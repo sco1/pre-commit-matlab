@@ -97,18 +97,20 @@ def process_file(
                     buffer = _write_line(f, line, buffer, line_length, indent_level)
                     continue
 
-                if all(
-                    (alternate_capital_handling, lstripped_line == lstripped_line.upper(), buffer)
-                ):
+                if alternate_capital_handling and lstripped_line[0].isupper():
+                    # Comment starts with a capital letter, with this opinionated flag set we'll
+                    # assume the intent is for it to start on its own line
                     buffer = _write_line(f, line, buffer, line_length, indent_level)
                     continue
 
+                # If we're here, then we have a line eligible for reflowing so add it to the buffer
                 buffer.append(uncommented_line)
                 continue
 
+            # Non-comment line, write straight out
             buffer = _write_line(f, line, buffer, line_length, indent_level)
         else:
-            # Dump any remaining comments in the buffer (file ends in comments)
+            # EOF, Dump any remaining comments in the buffer (file ends in comments)
             if buffer:
                 buffer = _dump_buffer(f, buffer, line_length, indent_level)
 
