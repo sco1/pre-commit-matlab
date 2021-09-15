@@ -97,11 +97,14 @@ def process_file(
                     buffer = _write_line(f, line, buffer, line_length, indent_level)
                     continue
 
-                if alternate_capital_handling and lstripped_line[0].isupper():
-                    # Comment starts with a capital letter, with this opinionated flag set we'll
-                    # assume the intent is for it to start on its own line
-                    buffer = _write_line(f, line, buffer, line_length, indent_level)
-                    continue
+                # `uncommented_line` is likely to start with leading whitespace that we don't care
+                # about for this check
+                if alternate_capital_handling and uncommented_line.lstrip()[0].isupper():
+                    # Comment line starts with a capital letter
+                    # We want to treat this as the start of a new comment block, so if there is an
+                    # existing buffer, dump it before adding the current line into a fresh buffer
+                    if buffer:
+                        buffer = _dump_buffer(f, buffer, line_length, indent_level)
 
                 # If we're here, then we have a line eligible for reflowing so add it to the buffer
                 buffer.append(uncommented_line)
@@ -111,6 +114,7 @@ def process_file(
             buffer = _write_line(f, line, buffer, line_length, indent_level)
         else:
             # EOF, Dump any remaining comments in the buffer (file ends in comments)
+            print("End of file", buffer)
             if buffer:
                 buffer = _dump_buffer(f, buffer, line_length, indent_level)
 
