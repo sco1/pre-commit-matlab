@@ -63,7 +63,7 @@ def process_file(
         * `    % This is not indented`
 
     If `alternate_capital_handling` is `True`, if the line buffer has contents then a line beginning
-    with a capital letter is treated as a new comment block.
+    with a capital letter is treated as the start of a new comment block.
 
     For example:
         % This is a comment line

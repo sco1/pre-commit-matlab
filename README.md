@@ -14,7 +14,7 @@ Add this to your `.pre-commit-config.yaml`
 
 ```yaml
 -   repo: https://github.com/sco1/pre-commit-matlab
-    rev: v1.0.0
+    rev: v1.1.0
     hooks:
     -   id: matlab-reflow-comments
         args: [--line-length=100]
@@ -28,15 +28,29 @@ Blank comment lines are passed back into the reformatted source code.
 
 * Specify line length with `args: [--line-length=100]` (Default: `75`)
 * Ignore comments with inner indentation `args: [--ignore-indented=True]` (Default: `True`)
+* Use `args: [--alternate-capital-handling=True]` to treat comment lines that begin with a capital letter as the start of a new comment block (Default: `False`)
 
-If `ignore_indented` is `True`, comments that contain inner indentation of at least two spaces
+If `ignore-indented` is `True`, comments that contain inner indentation of at least two spaces
 is passed back into the reformatted source code as-is. Leading whitespace in the line is not
 considered.
 
 For example:
-  ```matlab
-      % This is not indented
-  % This is not indented
-  %  This is indented
-  %    This is indented
-  ```
+
+```matlab
+    % This is not indented
+% This is not indented
+%  This is indented
+%    This is indented
+```
+
+If `alternate-capital-handling` is `True`, if the line buffer has contents then a line beginning
+with a capital letter is treated as the start of a new comment block.
+
+For example:
+
+```matlab
+% This is a comment line
+% This is a second comment line that will not be reflowed into the previous line
+```
+
+**NOTE:** As an opinionated flag, this may lead to false positives so it is off by default. If enabled, pay close attention to the resulting diff to ensure that your comments are being reflowed as desired.

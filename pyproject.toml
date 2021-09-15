@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pre-commit-matlab"
-version = "1.0.1"
+version = "1.1.0"
 description = "A Collection of pre-commit hooks for MATLAB"
 authors = ["sco1 <sco1.git@gmail.com>"]
 
