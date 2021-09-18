@@ -114,7 +114,6 @@ def process_file(
             buffer = _write_line(f, line, buffer, line_length, indent_level)
         else:
             # EOF, Dump any remaining comments in the buffer (file ends in comments)
-            print("End of file", buffer)
             if buffer:
                 buffer = _dump_buffer(f, buffer, line_length, indent_level)
 
