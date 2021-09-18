@@ -295,7 +295,47 @@ ALTERNATE_CAPITAL_HANDLING_TEST_CASES = [
             % comment that starts with a capital letter
             """
         ),
-    )
+    ),
+    (
+        dedent(
+            """\
+            function findgroundlevelpressure(dataObj)
+            % FINDGROUNDLEVELPRESSURE Plots the raw pressure data and
+            % prompts the user to window the region of the plot where the
+            % sensor is at ground level. The average pressure from this
+            % windowed region is used to update the object's pressure_groundlevel
+            % private property.
+            % The object's pressure altitude is also
+            % recalculated using the updated ground level pressure.
+            h.fig = figure;
+            """
+        ),
+        dedent(
+            """\
+            function findgroundlevelpressure(dataObj)
+            % FINDGROUNDLEVELPRESSURE Plots the raw pressure data and prompts the user to window the region of
+            % the plot where the sensor is at ground level. The average pressure from this windowed region is
+            % used to update the object's pressure_groundlevel private property.
+            % The object's pressure altitude is also recalculated using the updated ground level pressure.
+            h.fig = figure;
+            """
+        ),
+        dedent(
+            """\
+            function findgroundlevelpressure(dataObj)
+            % FINDGROUNDLEVELPRESSURE Plots the raw pressure
+            % data and prompts the user to window the region
+            % of the plot where the sensor is at ground level.
+            % The average pressure from this windowed region
+            % is used to update the object's
+            % pressure_groundlevel private property.
+            % The object's pressure altitude is also
+            % recalculated using the updated ground level
+            % pressure.
+            h.fig = figure;
+            """
+        ),
+    ),
 ]
 
 
