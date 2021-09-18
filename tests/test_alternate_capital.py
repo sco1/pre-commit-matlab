@@ -84,13 +84,21 @@ def test_alternate_capital_handling(  # noqa: D103
     # Check 100 width
     sample_file.write_text(in_src)
     matlab_reflow_comments.process_file(
-        sample_file, 100, ignore_indented=True, alternate_capital_handling=True
+        sample_file,
+        100,
+        ignore_indented=True,
+        alternate_capital_handling=True,
+        reflow_block_comments=True,
     )
     assert sample_file.read_text() == truth_100_width
 
     # Check 50 width
     sample_file.write_text(in_src)
     matlab_reflow_comments.process_file(
-        sample_file, 50, ignore_indented=True, alternate_capital_handling=True
+        sample_file,
+        50,
+        ignore_indented=True,
+        alternate_capital_handling=True,
+        reflow_block_comments=True,
     )
     assert sample_file.read_text() == truth_50_width

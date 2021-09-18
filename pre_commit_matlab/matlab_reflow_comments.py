@@ -45,7 +45,11 @@ def _write_line(
 
 
 def process_file(
-    file: Path, line_length: int, ignore_indented: bool, alternate_capital_handling: bool
+    file: Path,
+    line_length: int,
+    ignore_indented: bool,
+    alternate_capital_handling: bool,
+    reflow_block_comments: bool,
 ) -> None:
     """
     Reflow comments (`%`) in the provided MATLAB file (`*.m`) to the specified line length.
@@ -124,10 +128,17 @@ def main(argv: t.Optional[t.Sequence[str]] = None) -> None:  # pragma: no cover 
     parser.add_argument("--line-length", type=int, default=78)
     parser.add_argument("--ignore-indented", type=bool, default=True)
     parser.add_argument("--alternate-capital-handling", type=bool, default=False)
+    parser.add_argument("--reflow-block-comments", type=bool, default=True)
     args = parser.parse_args(argv)
 
     for file in args.filenames:
-        process_file(file, args.line_length, args.ignore_indented, args.alternate_capital_handling)
+        process_file(
+            file,
+            args.line_length,
+            args.ignore_indented,
+            args.alternate_capital_handling,
+            args.reflow_block_comments,
+        )
 
 
 if __name__ == "__main__":  # pragma: no cover
