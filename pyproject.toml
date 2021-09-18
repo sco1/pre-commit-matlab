@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pre-commit-matlab"
-version = "1.0.1"
+version = "1.1.0"
 description = "A Collection of pre-commit hooks for MATLAB"
 authors = ["sco1 <sco1.git@gmail.com>"]
 
@@ -42,6 +42,7 @@ flake8-docstrings = "^1.5"
 flake8-fixme = "^1.1"
 flake8-import-order = "^0.18"
 flake8-tidy-imports = "^4.1"
+isort = "^5.9"
 mypy = "^0.910"
 pep8-naming = "^0.12"
 pre-commit = "^2.7"
@@ -51,6 +52,13 @@ tox = "^3.23.1"
 
 [tool.black]
 line-length = 100
+
+[tool.isort]
+case_sensitive = true
+known_first_party = "pre-commit-matlab,tests"
+no_lines_before = "LOCALFOLDER"
+order_by_type = false
+profile = "black"
 
 [tool.mypy]
 disallow_incomplete_defs = true
