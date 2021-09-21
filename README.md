@@ -22,17 +22,16 @@ Add this to your `.pre-commit-config.yaml`
 
 ## Hooks
 ### `matlab-reflow-comments`
-Reflow comments (lines beginning with `%`) in MATLAB file(s) (`*.m`) to the specified line length.
+Reflow inline comments (lines beginning with `%`) or block comments (delimited by `%{` and `%}`) in MATLAB file(s) (`*.m`) to the specified line length.
 
 Blank comment lines are passed back into the reformatted source code.
 
 * Specify line length with `args: [--line-length=100]` (Default: `75`)
 * Ignore comments with inner indentation `args: [--ignore-indented=True]` (Default: `True`)
+* Also reflow block comments `args: [--reflow-block-comments=True]` (Default: `True`)
 * Use `args: [--alternate-capital-handling=True]` to treat comment lines that begin with a capital letter as the start of a new comment block (Default: `False`)
 
-If `ignore-indented` is `True`, comments that contain inner indentation of at least two spaces
-is passed back into the reformatted source code as-is. Leading whitespace in the line is not
-considered.
+If `ignore-indented` is `True`, comments that contain inner indentation of at least two spaces is passed back into the reformatted source code as-is. Leading whitespace in the line is not considered.
 
 For example:
 
@@ -43,8 +42,9 @@ For example:
 %    This is indented
 ```
 
-If `alternate-capital-handling` is `True`, if the line buffer has contents then a line beginning
-with a capital letter is treated as the start of a new comment block.
+**NOTE:** This logic currently does not apply to the contents of a block comment.
+
+If `alternate-capital-handling` is `True`, if the line buffer has contents then a line beginning with a capital letter is treated as the start of a new comment block.
 
 For example:
 
