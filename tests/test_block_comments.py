@@ -72,6 +72,48 @@ BLOCK_COMMENT_TEST_CASES = [
         ),
     ),
     (
+        True,
+        dedent(
+            """\
+            function asdf = foo()
+                % Hello this is an inline comment
+                %{
+                This is a really long and descriptive block comment that has some
+                information about things and stuff and is indented and also spans
+                multiple lines
+                %}
+                asdf = 1;
+            end
+            """
+        ),
+        dedent(
+            """\
+            function asdf = foo()
+                % Hello this is an inline comment
+                %{
+                This is a really long and descriptive block comment that has some information about things and
+                stuff and is indented and also spans multiple lines
+                %}
+                asdf = 1;
+            end
+            """
+        ),
+        dedent(
+            """\
+            function asdf = foo()
+                % Hello this is an inline comment
+                %{
+                This is a really long and descriptive block
+                comment that has some information about things
+                and stuff and is indented and also spans
+                multiple lines
+                %}
+                asdf = 1;
+            end
+            """
+        ),
+    ),
+    (
         False,
         dedent(
             """\

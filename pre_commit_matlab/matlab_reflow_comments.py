@@ -20,8 +20,7 @@ def _dump_buffer(
     The buffer is cleared & returned after the new line(s) are written.
     """
     if is_block:
-        initial = f"{' '*indent_level}"
-        following = f"{' '*indent_level}"
+        initial = following = f"{' '*indent_level}"
     else:
         initial = f"{' '*indent_level}%"  # Don't include the initial leading space
         following = f"{' '*indent_level}% "
@@ -102,6 +101,7 @@ def process_file(
                 continue
 
             # If we're inside a comment block, lines will likely not begin with a %
+            # Since we're dumping lines inside comment blocks as-is, we can short-circuit here
             if reflow_block_comments and in_comment_block:
                 if buffer:
                     # If this isn't the first line in the text block we need to add a leading space
