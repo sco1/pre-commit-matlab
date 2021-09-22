@@ -14,7 +14,7 @@ Add this to your `.pre-commit-config.yaml`
 
 ```yaml
 -   repo: https://github.com/sco1/pre-commit-matlab
-    rev: v1.1.0
+    rev: v1.2.0
     hooks:
     -   id: matlab-reflow-comments
         args: [--line-length=100]
@@ -22,17 +22,18 @@ Add this to your `.pre-commit-config.yaml`
 
 ## Hooks
 ### `matlab-reflow-comments`
-Reflow comments (lines beginning with `%`) in MATLAB file(s) (`*.m`) to the specified line length.
+Reflow inline comments (lines beginning with `%`) or block comments (delimited by `%{` and `%}`) in MATLAB file(s) (`*.m`) to the specified line length.
 
 Blank comment lines are passed back into the reformatted source code.
 
-* Specify line length with `args: [--line-length=100]` (Default: `75`)
-* Ignore comments with inner indentation `args: [--ignore-indented=True]` (Default: `True`)
-* Use `args: [--alternate-capital-handling=True]` to treat comment lines that begin with a capital letter as the start of a new comment block (Default: `False`)
+* Use `--line-length` to specify line length. (Default: `75`)
+* Use `--reflow-block-comments` to control block comment reflow. (Default: `True`)
+* Use `--ignore-indented` to ignore comments with inner indentation. (Default: `True`)
+  * **NOTE:** This logic *is not* applied to the contents of a block comment.
+* Use `--alternate-capital-handling` to treat comment lines that begin with a capital letter as the start of a new comment block. (Default: `False`)
+  * **NOTE:** This logic *is not* applied to the contents of a block comment.
 
-If `ignore-indented` is `True`, comments that contain inner indentation of at least two spaces
-is passed back into the reformatted source code as-is. Leading whitespace in the line is not
-considered.
+If `ignore-indented` is `True`, comments that contain inner indentation of at least two spaces is passed back into the reformatted source code as-is. Leading whitespace in the line is not considered.
 
 For example:
 
@@ -43,8 +44,7 @@ For example:
 %    This is indented
 ```
 
-If `alternate-capital-handling` is `True`, if the line buffer has contents then a line beginning
-with a capital letter is treated as the start of a new comment block.
+If `alternate-capital-handling` is `True`, if the line buffer has contents then a line beginning with a capital letter is treated as the start of a new comment block.
 
 For example:
 
