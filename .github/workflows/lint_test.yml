@@ -24,9 +24,6 @@ jobs:
         pip install poetry
         poetry install
 
-    - name: Run flake8
-      run: poetry run flake8 .
-
     - name: Run mypy
       run: poetry run mypy .
 
@@ -81,7 +78,10 @@ jobs:
 
     - name: Report coverage
       run: |
-        coverage report -m --skip-covered
+        echo '**Combined Coverage**' >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        coverage report -m --skip-covered >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
         coverage html
 
     - name: Publish cov HTML
