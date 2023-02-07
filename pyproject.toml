@@ -13,11 +13,11 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Software Development :: Quality Assurance",
@@ -29,25 +29,24 @@ packages = [{include = "pre_commit_matlab"},]
 matlab-reflow-comments = "pre_commit_matlab.matlab_reflow_comments:main"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8.1"
 
 [tool.poetry.dev-dependencies]
-black = "^22.8"
+black = "^23.1"
 bump2version = "^1.0"
-flake8 = "^5.0"
-flake8-annotations = "^2.9"
-flake8-bugbear = "^22.9"
-flake8-docstrings = "^1.6"
+flake8 = "^6.0"
+flake8-annotations = "^3.0"
+flake8-bugbear = "^23.1"
+flake8-docstrings = "^1.7"
 flake8-fixme = "^1.1"
-isort = "^5.10"
-mypy = "^0.981"
+isort = "^5.12"
+mypy = "^1.0"
 pep8-naming = "^0.13"
-pre-commit = "^2.20"
-pytest = "^7.1"
-pytest-check = "^1.0"
+pre-commit = "^3.0"
+pytest = "^7.2"
 pytest-cov = "^3.0"
 pytest-randomly = "^3.12"
-tox = "^3.26"
+tox = "^4.4"
 
 [tool.black]
 line-length = 100
