@@ -28,6 +28,7 @@ packages = [{include = "pre_commit_matlab"},]
 
 [tool.poetry.scripts]
 matlab-reflow-comments = "pre_commit_matlab.matlab_reflow_comments:main"
+invoke-mlint = "pre_commit_matlab.invoke_mlint:main"
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
