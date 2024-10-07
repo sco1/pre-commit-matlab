@@ -1,0 +1,15 @@
+[tool.bumper]
+current_version = "1.2.0"
+versioning_type = "semver"
+
+[[tool.bumper.files]]
+file = "./pyproject.toml"
+search = 'version = "{current_version}"'
+
+[[tool.bumper.files]]
+file = "./README.md"
+search = "rev: v{current_version}"
+
+[[tool.bumper.files]]
+file = "./README.md"
+search = "pre-commit-matlab/{current_version}"
