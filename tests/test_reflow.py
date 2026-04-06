@@ -8,50 +8,39 @@ from pre_commit_matlab import matlab_reflow_comments
 FORMATTING_TEST_CASES = [
     (
         "only comments",
-        dedent(
-            """\
+        dedent("""\
             % XBMINI is a MATLAB class definition providing the user with a set of
             % methods to parse and analyze raw data files output by GCDC XBmini
             % datalogger
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % XBMINI is a MATLAB class definition providing the user with a set of methods to parse and analyze
             % raw data files output by GCDC XBmini datalogger
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % XBMINI is a MATLAB class definition providing
             % the user with a set of methods to parse and
             % analyze raw data files output by GCDC XBmini
             % datalogger
-            """
-        ),
+            """),
     ),
     (
         "only comments w/blank comment line",
-        dedent(
-            """\
+        dedent("""\
             % XBMINI is a MATLAB class definition providing the user with a set of
             % methods to parse and analyze raw data files output by GCDC XBmini
             % datalogger
             %
             % Initialize an xbmini object using an absolute filepath to the raw
             % log file:
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % XBMINI is a MATLAB class definition providing the user with a set of methods to parse and analyze
             % raw data files output by GCDC XBmini datalogger
             %
             % Initialize an xbmini object using an absolute filepath to the raw log file:
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % XBMINI is a MATLAB class definition providing
             % the user with a set of methods to parse and
             % analyze raw data files output by GCDC XBmini
@@ -59,13 +48,11 @@ FORMATTING_TEST_CASES = [
             %
             % Initialize an xbmini object using an absolute
             % filepath to the raw log file:
-            """
-        ),
+            """),
     ),
     (
         "only comments w/indented",
-        dedent(
-            """\
+        dedent("""\
             % XBMINI is a MATLAB class definition providing the user with a set of
             % methods to parse and analyze raw data files output by GCDC XBmini
             % datalogger
@@ -74,20 +61,16 @@ FORMATTING_TEST_CASES = [
             % log file:
             %
             %     myLog = xbmini(filepath);
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % XBMINI is a MATLAB class definition providing the user with a set of methods to parse and analyze
             % raw data files output by GCDC XBmini datalogger
             %
             % Initialize an xbmini object using an absolute filepath to the raw log file:
             %
             %     myLog = xbmini(filepath);
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % XBMINI is a MATLAB class definition providing
             % the user with a set of methods to parse and
             % analyze raw data files output by GCDC XBmini
@@ -97,13 +80,11 @@ FORMATTING_TEST_CASES = [
             % filepath to the raw log file:
             %
             %     myLog = xbmini(filepath);
-            """
-        ),
+            """),
     ),
     (
         "code & comments",
-        dedent(
-            """\
+        dedent("""\
             function findgroundlevelpressure(dataObj)
             % FINDGROUNDLEVELPRESSURE Plots the raw pressure data and
             % prompts the user to window the region of the plot where the
@@ -112,20 +93,16 @@ FORMATTING_TEST_CASES = [
             % private property. The object's pressure altitude is also
             % recalculated using the updated ground level pressure.
             h.fig = figure;
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             function findgroundlevelpressure(dataObj)
             % FINDGROUNDLEVELPRESSURE Plots the raw pressure data and prompts the user to window the region of
             % the plot where the sensor is at ground level. The average pressure from this windowed region is
             % used to update the object's pressure_groundlevel private property. The object's pressure altitude
             % is also recalculated using the updated ground level pressure.
             h.fig = figure;
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             function findgroundlevelpressure(dataObj)
             % FINDGROUNDLEVELPRESSURE Plots the raw pressure
             % data and prompts the user to window the region
@@ -136,13 +113,11 @@ FORMATTING_TEST_CASES = [
             % object's pressure altitude is also recalculated
             % using the updated ground level pressure.
             h.fig = figure;
-            """
-        ),
+            """),
     ),
     (
         "code & comments, mixed levels",
-        dedent(
-            """\
+        dedent("""\
             classdef xbmini < handle & AirdropData
                 % XBMINI is a MATLAB class definition providing the user with a set of
                 % methods to parse and analyze raw data files output by GCDC XBmini
@@ -159,10 +134,8 @@ FORMATTING_TEST_CASES = [
                         h.fig = figure;
                     end
                 end
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             classdef xbmini < handle & AirdropData
                 % XBMINI is a MATLAB class definition providing the user with a set of methods to parse and
                 % analyze raw data files output by GCDC XBmini datalogger
@@ -177,10 +150,8 @@ FORMATTING_TEST_CASES = [
                         h.fig = figure;
                     end
                 end
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             classdef xbmini < handle & AirdropData
                 % XBMINI is a MATLAB class definition
                 % providing the user with a set of methods to
@@ -203,47 +174,34 @@ FORMATTING_TEST_CASES = [
                         h.fig = figure;
                     end
                 end
-            """
-        ),
+            """),
     ),
     (
         "hyphens",
-        dedent(
-            """\
+        dedent("""\
             % This is a really long comment line with some stuff and also a hyphenated word that hits the-boundary
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % This is a really long comment line with some stuff and also a hyphenated word that hits
             % the-boundary
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % This is a really long comment line with some
             % stuff and also a hyphenated word that hits
             % the-boundary
-            """
-        ),
+            """),
     ),
     (
         "Inline percent signs",
-        dedent(
-            """\
+        dedent("""\
             % This is 100% a comment with a percent sign
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % This is 100% a comment with a percent sign
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % This is 100% a comment with a percent sign
-            """
-        ),
+            """),
     ),
 ]
 
