@@ -7,32 +7,25 @@ from pre_commit_matlab import matlab_reflow_comments
 
 ALTERNATE_CAPITAL_HANDLING_TEST_CASES = [
     (
-        dedent(
-            """\
+        dedent("""\
             % This is a really long and descriptive one liner comment that has some information about things and stuff
             % But it also has an intentional line break into a comment that starts with a capital letter
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % This is a really long and descriptive one liner comment that has some information about things and
             % stuff
             % But it also has an intentional line break into a comment that starts with a capital letter
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             % This is a really long and descriptive one liner
             % comment that has some information about things
             % and stuff
             % But it also has an intentional line break into a
             % comment that starts with a capital letter
-            """
-        ),
+            """),
     ),
     (
-        dedent(
-            """\
+        dedent("""\
             function findgroundlevelpressure(dataObj)
             % FINDGROUNDLEVELPRESSURE Plots the raw pressure data and
             % prompts the user to window the region of the plot where the
@@ -42,20 +35,16 @@ ALTERNATE_CAPITAL_HANDLING_TEST_CASES = [
             % The object's pressure altitude is also
             % recalculated using the updated ground level pressure.
             h.fig = figure;
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             function findgroundlevelpressure(dataObj)
             % FINDGROUNDLEVELPRESSURE Plots the raw pressure data and prompts the user to window the region of
             % the plot where the sensor is at ground level. The average pressure from this windowed region is
             % used to update the object's pressure_groundlevel private property.
             % The object's pressure altitude is also recalculated using the updated ground level pressure.
             h.fig = figure;
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             function findgroundlevelpressure(dataObj)
             % FINDGROUNDLEVELPRESSURE Plots the raw pressure
             % data and prompts the user to window the region
@@ -67,8 +56,7 @@ ALTERNATE_CAPITAL_HANDLING_TEST_CASES = [
             % recalculated using the updated ground level
             % pressure.
             h.fig = figure;
-            """
-        ),
+            """),
     ),
 ]
 

@@ -8,36 +8,29 @@ from pre_commit_matlab import matlab_reflow_comments
 BLOCK_COMMENT_TEST_CASES = [
     (
         True,
-        dedent(
-            """\
+        dedent("""\
             %{
             This is a really long and descriptive block comment that has some
             information about things and stuff and also spans multiple lines
             %}
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             %{
             This is a really long and descriptive block comment that has some information about things and stuff
             and also spans multiple lines
             %}
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             %{
             This is a really long and descriptive block
             comment that has some information about things and
             stuff and also spans multiple lines
             %}
-            """
-        ),
+            """),
     ),
     (
         True,
-        dedent(
-            """\
+        dedent("""\
             %{
             This is a really long and descriptive block comment that has some
             information about things and stuff and also spans multiple lines
@@ -45,10 +38,8 @@ BLOCK_COMMENT_TEST_CASES = [
             function asdf = foo()
                 asdf = 1;
             end
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             %{
             This is a really long and descriptive block comment that has some information about things and stuff
             and also spans multiple lines
@@ -56,10 +47,8 @@ BLOCK_COMMENT_TEST_CASES = [
             function asdf = foo()
                 asdf = 1;
             end
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             %{
             This is a really long and descriptive block
             comment that has some information about things and
@@ -68,13 +57,11 @@ BLOCK_COMMENT_TEST_CASES = [
             function asdf = foo()
                 asdf = 1;
             end
-            """
-        ),
+            """),
     ),
     (
         True,
-        dedent(
-            """\
+        dedent("""\
             function asdf = foo()
                 % Hello this is an inline comment
                 %{
@@ -84,10 +71,8 @@ BLOCK_COMMENT_TEST_CASES = [
                 %}
                 asdf = 1;
             end
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             function asdf = foo()
                 % Hello this is an inline comment
                 %{
@@ -96,10 +81,8 @@ BLOCK_COMMENT_TEST_CASES = [
                 %}
                 asdf = 1;
             end
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             function asdf = foo()
                 % Hello this is an inline comment
                 %{
@@ -110,41 +93,34 @@ BLOCK_COMMENT_TEST_CASES = [
                 %}
                 asdf = 1;
             end
-            """
-        ),
+            """),
     ),
     (
         False,
-        dedent(
-            """\
+        dedent("""\
             %{
             a = zeros(10, 1);
             for ii = 1:10
                 a[ii] = ii;
             end
             %}
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             %{
             a = zeros(10, 1);
             for ii = 1:10
                 a[ii] = ii;
             end
             %}
-            """
-        ),
-        dedent(
-            """\
+            """),
+        dedent("""\
             %{
             a = zeros(10, 1);
             for ii = 1:10
                 a[ii] = ii;
             end
             %}
-            """
-        ),
+            """),
     ),
 ]
 
